@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Each step is skipped until its project files exist (Milestone 1 onwards),
+  # so this workflow passes on the documentation-only repository.
+  check:
+    name: Lint, type check and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        if: hashFiles('package.json') != ''
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install
+        if: hashFiles('package.json') != ''
+        run: npm ci
+
+      - name: Lint
+        if: hashFiles('package.json') != ''
+        run: npm run lint
+
+      - name: Type check
+        if: hashFiles('package.json') != ''
+        run: npm run typecheck
+
+      - name: Unit tests
+        if: hashFiles('package.json') != ''
+        run: npm run test
+
+  database:
+    name: Database migrations and tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        if: hashFiles('supabase/config.toml') != ''
+        with:
+          version: latest
+
+      - name: Start local Supabase
+        if: hashFiles('supabase/config.toml') != ''
+        run: supabase start
+
+      - name: Database tests
+        if: hashFiles('supabase/config.toml') != ''
+        run: supabase test db
+
+      - name: Stop local Supabase
+        if: always() && hashFiles('supabase/config.toml') != ''
+        run: supabase stop

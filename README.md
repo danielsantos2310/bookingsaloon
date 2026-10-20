@@ -49,9 +49,21 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the reasoning behind these choices.
 
 Payment and messaging providers run in test mode in local and staging.
 
+## Roadmap
+
+| Milestone | Outcome |
+|---|---|
+| 0. Repository and documentation | Docs, ADRs, CI skeleton, environment template (this milestone) |
+| 1. Project scaffold | Next.js and local Supabase running, CI green, first migration (services, staff, working hours) |
+| 2. Availability and booking | Free-slot calculation, booking without payment, conflict tests |
+| 3. Admin area | Owner and staff views: services, staff, hours, time off, bookings |
+| 4. Online payment | Stripe Checkout for pay-now services, webhook handling |
+| 5. Reminders | Email reminders, then SMS |
+| 6. Salon review and launch | Staging walkthrough with the salon, data import, go-live |
+
 ## Getting started
 
-Setup instructions will be added when the first code lands (Milestone 1). Expected prerequisites:
+Setup instructions will be added in Milestone 1. Expected prerequisites:
 
 - Node.js 20 or later
 - Docker (for local Supabase)

@@ -10,4 +10,9 @@ Entries are added under **Unreleased** as work is merged. When a release is cut,
 
 ### Added
 - Project documentation: README, ARCHITECTURE, DESIGN, CHANGELOG, CONTRIBUTING.
-- Documentation folder for architecture decision records (`docs/adr/`).
+- Architecture decision records 0001 to 0005 and their index in `docs/adr/`.
+- `.env.example` listing every planned environment variable, without secret values.
+- `.nvmrc` pinning Node.js 20 and `.editorconfig` for consistent formatting.
+- Pull request template with the review checklist.
+- CI workflow for lint, type check and tests, and database tests. Each job runs only once its project files exist.
+- Roadmap in README.md.
