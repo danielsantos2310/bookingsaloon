@@ -137,7 +137,6 @@ flowchart TD
 | Owner | 16 (includes the two edit screens O4a and O6a) |
 | System | 3 |
 | **Total** | **45** |
-| System | 3 |
 
 ## Open points for the design phase
 
