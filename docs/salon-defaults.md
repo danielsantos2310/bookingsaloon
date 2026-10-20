@@ -2,7 +2,7 @@
 
 This document lists the starting values for Bellabooking. Every value here is a **default** that the owner can change later in the admin area. Nothing in this list is fixed in code.
 
-Working name: **Bellabooking**. The salon's own name, logo, and colours are still to be decided (see Step 5 in the plan).
+Working name: **Bellabooking**. The salon's own name, logo, and colours are still to be decided in the design phase.
 
 Status key:
 - **Default**: a starting value we chose. Change it in the admin area when the salon confirms or changes it.
@@ -50,7 +50,7 @@ Editable: name, description, duration, buffer, price, payment mode, active or hi
 | Full colour | 120 min | 15 min | £70 | Pay in salon | Placeholder |
 | Manicure | 45 min | 10 min | £25 | Pay in salon | Placeholder |
 
-Payment mode defaults to **Pay in salon** for every service. Online payment (Pay now) is available per service and switched on in Step 13. No service requires a deposit in v1.
+Payment mode defaults to **Pay in salon** for every service. Online payment (Pay now) is available per service and switched on in Milestone 4. No service requires a deposit in v1.
 
 ## 4. Staff
 
@@ -84,7 +84,7 @@ Editable in admin, under Settings.
 |---|---|---|---|
 | Booking confirmation | Email | Immediately | Default, always on |
 | Reminder | Email | 24 hours before | Default, on |
-| Reminder | SMS | 2 hours before | Default, **off** until Twilio is set up (Step 14) |
+| Reminder | SMS | 2 hours before | Default, **off** until Twilio is set up (Milestone 5) |
 | Cancellation | Email | Immediately | Default, always on |
 
 The owner can turn each reminder on or off and change its timing. Confirmation and cancellation emails cannot be turned off, because customers need them.

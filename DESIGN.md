@@ -2,7 +2,7 @@
 
 This document defines what the salon booking system does and how it behaves. The technical design is in [ARCHITECTURE.md](ARCHITECTURE.md).
 
-Values marked **(assumed)** are sensible defaults I chose. They are not yet confirmed by the salon and should be reviewed before launch.
+Each rule is marked **Default** or **Fixed**. A *Default* is a starting value the owner can change in the admin area. The full list of starting values is in [docs/salon-defaults.md](docs/salon-defaults.md). A *Fixed* rule is part of how v1 works and cannot be configured.
 
 ## 1. Product goals
 
@@ -55,17 +55,17 @@ Use these words consistently in the UI, emails, code and docs. Do not use "appoi
 
 ## 4. Booking rules
 
-| Rule | Default | Status |
+| Rule | Value | Type |
 |---|---|---|
-| Slot interval | 15 minutes | (assumed) |
-| Minimum lead time | 2 hours before the start time | (assumed) |
-| Maximum advance booking | 60 days | (assumed) |
-| Customers per slot | 1 (one staff member, one client at a time) | Confirmed by scope |
-| Cancellation without charge | Up to 24 hours before the start time | (assumed) |
-| Late cancellation or no-show fee | Not in v1. Owner handles manually | (assumed) |
-| Reschedule | Same rules as cancellation. Counts as cancel and rebook | (assumed) |
-| Pending payment hold | 15 minutes, then the slot is released | (assumed) |
-| Staff choice | Customer may choose a staff member or "anyone available" | Confirmed by scope |
+| Slot interval | 15 minutes | Default |
+| Minimum lead time | 2 hours before the start time | Default |
+| Maximum advance booking | 60 days | Default |
+| Cancellation without charge | Up to 24 hours before the start time | Default |
+| Reschedule | Same rules as cancellation. Counts as cancel and rebook | Default |
+| Pending payment hold | 15 minutes, then the slot is released | Default |
+| Late cancellation or no-show fee | None automatically. Owner handles manually | Fixed for v1 |
+| Customers per slot | One staff member, one client at a time | Fixed |
+| Staff choice | Customer may choose a staff member or "anyone available" | Fixed |
 
 ### Payment modes per service
 
@@ -139,7 +139,7 @@ Setup should be possible without developer help. Show a checklist on the dashboa
 
 SMS messages are kept short and include the salon name. They never include prices or personal details beyond the first name.
 
-Timing for reminders is **(assumed)**. Customers can opt out of SMS reminders, but not email confirmations about their booking.
+Reminder timings are **Default** and editable in admin. SMS reminders are **off by default** until Twilio is set up (Milestone 5). Customers can opt out of SMS reminders, but not email confirmations about their booking.
 
 ## 7. UI principles
 
@@ -149,7 +149,7 @@ Timing for reminders is **(assumed)**. Customers can opt out of SMS reminders, b
 - **Times in local time.** Always show Europe/London and never ask the customer which time zone they are in.
 - **Clear unavailable states.** Dates with no availability are disabled with an explanation, not hidden.
 - **Accessible by default.** WCAG 2.2 AA contrast, keyboard operable, labels on every field, errors linked to fields, touch targets at least 44 by 44 pixels.
-- **Calm visual style.** Warm neutral palette, one accent colour, generous whitespace. Photography of the salon and staff where available. Exact brand to be defined.
+- **Calm visual style.** Warm neutral palette, one accent colour, generous whitespace. Photography of the salon and staff where available. The brand (name, colours, logo) is decided in the design phase.
 
 ## 8. Content and tone
 
@@ -185,9 +185,10 @@ Timing for reminders is **(assumed)**. Customers can opt out of SMS reminders, b
 
 ## 11. Open questions
 
-- Confirm opening hours, staff list and services with the salon.
-- Confirm cancellation window and fee policy.
-- Confirm reminder timings and whether SMS is wanted at launch.
+Booking rules, reminder timings and the starting salon data are settled as defaults. The salon can change them in admin. The questions below still need an answer before launch:
+
 - Will the salon want a waiting list in the first year?
 - Is there an existing booking system with customers to import?
-- Brand: name, logo, colours, photography.
+- VAT position: are prices shown including VAT?
+- Customer record retention period (default: 2 years after last visit).
+- Brand: name, logo, colours and photography (design phase).

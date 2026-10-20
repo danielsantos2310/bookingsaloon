@@ -17,3 +17,6 @@ Entries are added under **Unreleased** as work is merged. When a release is cut,
 - CI workflow for lint, type check and tests, and database tests. Each job runs only once its project files exist.
 - Roadmap in README.md.
 - `docs/salon-defaults.md`: starting values for business details, opening hours, services, staff, booking rules and reminders. All are editable in the admin area.
+
+### Changed
+- DESIGN.md: booking rules are now marked **Default** (editable) or **Fixed** (v1 rule). The "(assumed)" markers are removed, and open questions are reduced to the points that still need an answer before launch.
