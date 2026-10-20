@@ -4,18 +4,20 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Bella Nails Studio | Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="./salon-booking-app.css"/>
+<link rel="stylesheet" href="./bella-brand.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<meta name="theme-color" content="#2c382d"/>
+<meta name="theme-color" content="#2F3B30"/>
 <meta name="description" content="A little time, just for you. Book nail art, manicures and your next visit to Bella Nails Studio."/>
+<link rel="icon" type="image/svg+xml" href="./assets/bella-icon.svg"/>
+<link rel="manifest" href="./site.webmanifest"/>
 </head>
 <body class="owner-page">
 <a class="skip-link" href="#main-content">Skip to content</a>
 <div class="app-shell">
   <nav class="top-nav">
     <button class="admin-menu-toggle" type="button" onclick="toggleAdminMenu(true)" aria-label="Open menu" aria-controls="studio-navigation" aria-expanded="false">☰</button>
-    <a class="nav-logo" href="./index.html" aria-label="Bella Nails Studio home">bella<span class="wordmark-dot">.</span><span class="wordmark-caption">NAILS STUDIO</span></a>
+    <a class="nav-logo" href="./index.html" aria-label="Bella Nails Studio home"><span class="wordmark-main">bella<span class="wordmark-dot">.</span></span><span class="wordmark-caption">NAILS STUDIO</span></a>
     <a class="nav-pill" href="./salon-booking-app.html" style="text-decoration:none;display:inline-flex;align-items:center;">View booking page <span aria-hidden="true">↗</span></a>
     <span class="nav-pill active" id="adminNavButton">Studio workspace</span>
   </nav>
@@ -53,11 +55,12 @@
         <button class="sidebar-link" id="sl-audit" type="button" onclick="switchAdmin('audit')">
           <span class="icon" aria-hidden="true">◦</span> Activity log
         </button>
+        <div class="sidebar-brand-seal"><img src="./assets/bella-seal.svg" alt="Bella Nails Studio seal" width="110" height="110"/><span>YOUR NEXT LITTLE RITUAL</span></div>
       </div>
 
       <div class="admin-main" id="main-content" tabindex="-1">
         <div class="admin-panel active" id="panel-dash">
-          <div class="workspace-heading"><div><div class="workspace-eyebrow">YOUR STUDIO, AT A GLANCE</div><h1 class="admin-title">Good things, beautifully organised.</h1></div><span class="workspace-label">OWNER WORKSPACE</span></div>
+          <div class="workspace-heading"><div><div class="workspace-eyebrow"><img src="./assets/bella-symbol.svg" width="32" height="32" alt=""/> YOUR STUDIO, AT A GLANCE</div><h1 class="admin-title">Good things, beautifully organised.</h1></div><span class="workspace-label">OWNER WORKSPACE</span></div>
           <section class="avail-card" id="adminAuthCard" aria-label="Owner sign-in">
             <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Welcome back to Bella.</div>
             <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Your bookings, your team, your day. Sign in to make it all happen.</div>

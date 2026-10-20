@@ -1,0 +1,19 @@
+{
+  "name": "Bella Nails Studio",
+  "short_name": "Bella",
+  "description": "Your next little ritual.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F9F8F4",
+  "theme_color": "#2F3B30",
+  "icons": [
+    {
+      "src": "./assets/bella-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
+

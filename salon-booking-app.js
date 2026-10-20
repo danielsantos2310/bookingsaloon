@@ -716,7 +716,7 @@ function renderClientAttendants() {
   walkInCard.type = 'button';
   walkInCard.className = 'attendant-card' + (state.walkIn ? ' selected' : '');
   walkInCard.setAttribute('aria-pressed', String(state.walkIn));
-  walkInCard.innerHTML = '<span class="technician-mark" aria-hidden="true">✳</span><div class="attendant-name">Anyone available</div><div class="attendant-meta">Find my perfect match</div>';
+  walkInCard.innerHTML = '<span class="technician-mark brand-choice" aria-hidden="true"><img src="./assets/bella-symbol.svg" alt="" width="32" height="32"/></span><div class="attendant-name">Anyone available</div><div class="attendant-meta">Find my perfect match</div>';
   walkInCard.onclick = function() {
     state.walkIn = true;
     state.attendantId = null;
@@ -789,7 +789,7 @@ function renderServiceList() {
     card.onclick = function() {
       selectService(service.id);
     };
-    card.innerHTML = '<div class="svc-dot"></div><div class="svc-info"><div class="svc-name">' + service.name + '</div><div class="svc-dur">' + service.dur + '</div></div><div class="svc-price">' + service.price.replace(',00', '') + '</div>';
+    card.innerHTML = '<span class="service-thumbnail"><img src="./assets/bella-manicure.webp" alt="" width="54" height="54" loading="lazy"/></span><div class="svc-dot"></div><div class="svc-info"><div class="svc-name">' + service.name + '</div><div class="svc-dur">' + service.dur + '</div></div><div class="svc-price">' + service.price.replace(',00', '') + '</div>';
     list.appendChild(card);
   });
 }
@@ -2682,7 +2682,7 @@ function renderClientAttendants() {
   walkInCard.type = 'button';
   walkInCard.className = 'attendant-card' + (state.walkIn ? ' selected' : '');
   walkInCard.setAttribute('aria-pressed', String(state.walkIn));
-  walkInCard.innerHTML = '<span class="technician-mark" aria-hidden="true">✳</span><div class="attendant-name">Anyone available</div><div class="attendant-meta">Find my perfect match</div>';
+  walkInCard.innerHTML = '<span class="technician-mark brand-choice" aria-hidden="true"><img src="./assets/bella-symbol.svg" alt="" width="32" height="32"/></span><div class="attendant-name">Anyone available</div><div class="attendant-meta">Find my perfect match</div>';
   walkInCard.onclick = function() {
     state.walkIn = true;
     state.attendantId = null;
@@ -2748,7 +2748,7 @@ function renderServiceList() {
     card.onclick = function() {
       selectService(service.id);
     };
-    card.innerHTML = '<div class="svc-dot"></div><div class="svc-info"><div class="svc-name">' + escapeHtml(service.name) + '</div><div class="svc-dur">' + escapeHtml(service.dur) + '</div></div><div class="svc-price">' + escapeHtml(service.price.replace(',00', '')) + '</div>';
+    card.innerHTML = '<span class="service-thumbnail"><img src="./assets/bella-manicure.webp" alt="" width="54" height="54" loading="lazy"/></span><div class="svc-dot"></div><div class="svc-info"><div class="svc-name">' + escapeHtml(service.name) + '</div><div class="svc-dur">' + escapeHtml(service.dur) + '</div></div><div class="svc-price">' + escapeHtml(service.price.replace(',00', '')) + '</div>';
     list.appendChild(card);
   });
 }

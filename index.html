@@ -4,17 +4,19 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Bella Nails Studio | Booking</title>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="./salon-booking-app.css"/>
+<link rel="stylesheet" href="./bella-brand.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<meta name="theme-color" content="#2c382d"/>
+<meta name="theme-color" content="#2F3B30"/>
 <meta name="description" content="A little time, just for you. Book nail art, manicures and your next visit to Bella Nails Studio."/>
+<link rel="icon" type="image/svg+xml" href="./assets/bella-icon.svg"/>
+<link rel="manifest" href="./site.webmanifest"/>
 </head>
 <body class="booking-page">
 <a class="skip-link" href="#main-content">Skip to content</a>
 <div class="app-shell">
   <nav class="top-nav">
-    <a class="nav-logo" href="./index.html" aria-label="Bella Nails Studio home">bella<span class="wordmark-dot">.</span><span class="wordmark-caption">NAILS STUDIO</span></a>
+    <a class="nav-logo" href="./index.html" aria-label="Bella Nails Studio home"><span class="wordmark-main">bella<span class="wordmark-dot">.</span></span><span class="wordmark-caption">NAILS STUDIO</span></a>
     <span class="nav-context">YOUR NEXT LITTLE RITUAL</span>
   </nav>
   <div class="connection-notice" id="connectionNotice" role="status" aria-live="polite" hidden></div>
@@ -22,14 +24,11 @@
   <main id="view-client" class="view active">
     <div class="booking-wrap" id="main-content">
       <header class="salon-header">
-        <div class="studio-eyebrow"><span class="studio-spark" aria-hidden="true">✳</span> BELLA NAILS STUDIO</div>
-        <h1 class="studio-headline">A little time.<br><em>Just for you.</em></h1>
-        <p class="studio-description">Beautiful nails start with a moment to yourself. Find your service, your person and your perfect time.</p>
-        <div class="polish-art" aria-hidden="true">
-          <span class="polish-swatch swatch-one"></span><span class="polish-swatch swatch-two"></span><span class="polish-swatch swatch-three"></span><span class="polish-swatch swatch-four"></span>
-          <span class="polish-caption">a colour for every mood</span>
-        </div>
-        <div class="studio-details"><span>Nail art &amp; manicures</span><span>United Kingdom · London time</span></div>
+        <div class="studio-signature"><img src="./assets/bella-symbol.svg" alt="" width="54" height="54"/><span>BELLA NAILS STUDIO</span></div>
+        <div class="studio-photo"><img src="./assets/bella-manicure.webp" alt="Glossy nude almond nails resting on a soft oatmeal knit" width="1200" height="800" fetchpriority="high"/><span class="photo-caption">Care. Colour. Confidence. You.</span></div>
+        <div class="studio-story"><span class="gold-rule" aria-hidden="true"></span><h1 class="studio-headline">A little time.<br><em>Just for you.</em></h1>
+        <p class="studio-description">Beautiful nails start with a moment to yourself.</p>
+        <div class="studio-details"><span>Nail art &amp; manicures</span><span>United Kingdom · London time</span></div></div>
       </header>
 
       <div class="step-bar" aria-label="Booking progress">

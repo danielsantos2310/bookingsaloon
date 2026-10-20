@@ -1,0 +1,13 @@
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"><defs><path id="arc" d="M40 120a80 80 0 0 1 160 0"/></defs><path d="M37 147a87 87 0 0 0 166 0" fill="none" stroke="#AA8B4C" stroke-width=".8"/><text font-family="Arial,sans-serif" font-size="11" letter-spacing="5" fill="#2F3B30"><textPath href="#arc" startOffset="50%" text-anchor="middle">BELLA NAILS STUDIO</textPath></text><g transform="translate(56 58) scale(.64)">
+  <defs>
+    <linearGradient id="beige" x1="75" y1="20" x2="112" y2="99" gradientUnits="userSpaceOnUse"><stop stop-color="#F4E7D9"/><stop offset="1" stop-color="#E8D8C6"/></linearGradient>
+    <linearGradient id="blush" x1="110" y1="85" x2="186" y2="116" gradientUnits="userSpaceOnUse"><stop stop-color="#E8D8C6"/><stop offset=".5" stop-color="#DAB6A4"/><stop offset="1" stop-color="#C69B89"/></linearGradient>
+    <linearGradient id="forest" x1="84" y1="108" x2="120" y2="188" gradientUnits="userSpaceOnUse"><stop stop-color="#66735C"/><stop offset="1" stop-color="#2F3B30"/></linearGradient>
+    <linearGradient id="olive" x1="15" y1="85" x2="93" y2="119" gradientUnits="userSpaceOnUse"><stop stop-color="#AEB7A1"/><stop offset="1" stop-color="#77846D"/></linearGradient>
+  </defs>
+  <path d="M100 97C69 75 69 43 100 14C131 43 131 75 100 97Z" fill="url(#beige)" stroke="#CABBA8" stroke-width=".8"/>
+  <path d="M103 100C126 69 161 68 187 100C161 132 126 131 103 100Z" fill="url(#blush)" stroke="#BD9683" stroke-width=".8"/>
+  <path d="M100 103C131 126 131 160 100 188C69 160 69 126 100 103Z" fill="url(#forest)" stroke="#2F3B30" stroke-width=".8"/>
+  <path d="M97 100C74 131 41 132 14 100C41 68 74 69 97 100Z" fill="url(#olive)" stroke="#7B886E" stroke-width=".8"/>
+  <path d="M100 19V94M109 99C136 88 156 84 177 95M100 109V180M22 98C43 87 63 87 91 99" stroke="#F9F8F4" stroke-opacity=".28" stroke-width="1.1"/>
+</g></svg>

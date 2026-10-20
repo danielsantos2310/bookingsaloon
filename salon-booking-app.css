@@ -1,15 +1,20 @@
 :root {
   /* Canonical Bella palette. Legacy aliases keep shared components consistent. */
-  --paper: #f8f6f0;
-  --surface: #ffffff;
-  --surface-soft: #eeeee6;
-  --ink: #2c382d;
-  --ink-muted: #687063;
-  --sage: #dbe3d3;
-  --sage-deep: #53664b;
-  --rose: #d6b7a5;
-  --line: #e1e2d7;
-  --line-strong: #a4ad99;
+  --paper: #F9F8F4;
+  --surface: #FDFCF9;
+  --surface-soft: #F4E7D9;
+  --ink: #2F3B30;
+  --ink-muted: #61695F;
+  --sage: #DCE4D5;
+  --sage-deep: #52644B;
+  --rose: #DAB6A4;
+  --line: #E9E3D8;
+  --line-strong: #9BA58F;
+  --beige: #E8D8C6;
+  --olive: #8F9D84;
+  --stone: #D0D4CC;
+  --champagne: #F4E7D9;
+  --gold: #AA8B4C;
   --cream: var(--paper);
   --sand: var(--line);
   --sand2: var(--line-strong);
@@ -27,7 +32,7 @@
   --success: #346a51;
   --warning: #8b611b;
   --radius: 20px;
-  --radius-sm: 12px;
+  --radius-sm: 14px;
   --shadow: 0 8px 28px rgba(44,56,45,.035);
   --shadow-lg: 0 20px 60px rgba(44,56,45,.08);
   --font-display: 'Bodoni Moda', Georgia, serif;
@@ -1005,9 +1010,9 @@ button[aria-busy="true"]{cursor:wait;}
 .password-toggle{position:absolute;right:5px;top:5px;bottom:5px;padding:0 12px;border:0;background:transparent;border-radius:8px;color:var(--ink);font-family:var(--font-body);font-size:11px;cursor:pointer;}
 .password-toggle:hover{background:var(--sage);}
 .top-nav{height:80px;padding:0 max(28px,calc((100vw - 1240px)/2));background:var(--paper);backdrop-filter:none;border-bottom:1px solid var(--line);gap:20px;}
-.nav-logo{display:inline-flex;align-items:baseline;gap:0;text-decoration:none;color:var(--ink);font-size:43px;line-height:1;letter-spacing:-2.5px;}
-.nav-logo .wordmark-dot{color:var(--sage-deep);}
-.nav-logo .wordmark-caption{font-family:var(--font-body);font-size:9px;font-weight:700;letter-spacing:2px;color:var(--ink-muted);margin-left:13px;align-self:center;max-width:65px;line-height:1.6;}
+.nav-logo{display:inline-flex;flex-direction:column;align-items:center;gap:0;text-decoration:none;color:var(--ink);font-size:43px;line-height:1;letter-spacing:-2.5px;}
+.nav-logo .wordmark-dot{color:var(--gold);}
+.nav-logo .wordmark-caption{font-family:var(--font-body);font-size:8px;font-weight:600;letter-spacing:3.3px;color:var(--ink);margin:7px 0 0 4px;max-width:none;line-height:1.4;}
 .nav-context{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--ink-muted);}
 .nav-pill{font-family:var(--font-body);padding:10px 18px;font-size:11px;min-height:40px;display:inline-flex;align-items:center;gap:12px;}
 .nav-pill.active{background:var(--ink);border-color:var(--ink);box-shadow:none;}
@@ -1018,14 +1023,7 @@ button[aria-busy="true"]{cursor:wait;}
 .studio-headline{font-family:var(--font-display);font-size:clamp(42px,4.8vw,66px);font-weight:400;line-height:1.12;letter-spacing:-2px;margin:26px 0 20px;text-align:center;}
 .studio-headline em{font-weight:400;}
 .studio-description{font-size:12px;line-height:1.9;text-align:center;max-width:295px;margin:0 auto;color:var(--ink);}
-.polish-art{height:245px;position:relative;max-width:330px;margin:5px auto 0;}
-.polish-swatch{position:absolute;bottom:48px;left:calc(50% - 36px);width:72px;height:150px;border-radius:55% 55% 40% 40%;transform-origin:50% 110%;border:1px solid rgba(44,56,45,.1);box-shadow:inset 8px 0 18px rgba(255,255,255,.28),inset -9px 0 15px rgba(44,56,45,.08),0 14px 20px rgba(44,56,45,.09);}
-.polish-swatch::after{content:'';position:absolute;top:18px;left:15px;width:7px;height:62px;border-radius:50%;background:rgba(255,255,255,.36);transform:rotate(9deg);}
-.swatch-one{background:#5b7054;transform:rotate(-35deg);z-index:1;}
-.swatch-two{background:#b7c4a7;transform:rotate(-12deg);z-index:2;}
-.swatch-three{background:#e8dbc3;transform:rotate(12deg);z-index:3;}
-.swatch-four{background:var(--rose);transform:rotate(35deg);z-index:4;}
-.polish-caption{position:absolute;bottom:9px;left:0;width:100%;text-align:center;font-family:var(--font-display);font-size:18px;font-style:italic;color:var(--ink);}
+
 .studio-details{display:flex;flex-direction:column;gap:4px;text-align:center;margin-top:24px;padding-top:18px;border-top:1px solid rgba(44,56,45,.18);font-size:10px;letter-spacing:.4px;color:var(--ink);}
 .step-bar{grid-column:2;gap:0;margin:12px 0 30px;animation:none;}
 .step-seg{height:auto;position:relative;text-align:center;background:none!important;border-radius:0;display:flex;align-items:center;flex-direction:column;gap:8px;color:var(--ink-muted);}
@@ -1046,14 +1044,14 @@ button[aria-busy="true"]{cursor:wait;}
 .attendant-card.selected{background:var(--surface-soft);border-color:var(--sage-deep);box-shadow:inset 0 0 0 1px var(--sage-deep);}
 .attendant-card.selected::after{content:'✓';position:absolute;right:13px;top:13px;width:20px;height:20px;display:grid;place-items:center;background:var(--ink);color:var(--white);border-radius:50%;font-size:11px;}
 .technician-mark{display:grid;place-items:center;width:44px;height:50px;border-radius:48% 48% 36% 36%;margin-bottom:14px;background:var(--sage);color:var(--ink);font-family:var(--font-display);font-size:19px;font-style:italic;}
-.attendant-card:nth-child(2) .technician-mark{background:#eadfce;}
-.attendant-card:nth-child(3) .technician-mark{background:#e5cfc2;}
-.attendant-card:nth-child(4) .technician-mark{background:#d1dac6;}
+.attendant-card:nth-child(2) .technician-mark{background:var(--beige);}
+.attendant-card:nth-child(3) .technician-mark{background:var(--rose);}
+.attendant-card:nth-child(4) .technician-mark{background:var(--sage);}
 .attendant-name{font-size:12px;line-height:1.5;font-weight:700;overflow-wrap:anywhere;}
 .attendant-meta{font-size:10px;line-height:1.6;margin-top:4px;}
 .btn-row{margin-top:28px;gap:12px;}
-.btn{min-height:46px;border-radius:10px;font-size:12px;font-weight:600;letter-spacing:0;padding:13px 20px;display:inline-flex;justify-content:center;align-items:center;gap:18px;}
-.btn-primary{background:var(--ink);box-shadow:none;}
+.btn{min-height:46px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:0;padding:13px 20px;display:inline-flex;justify-content:center;align-items:center;gap:18px;}
+.btn-primary{background:var(--ink);box-shadow:0 5px 14px rgba(47,59,48,.08);}
 .btn-primary:hover{background:var(--sage-deep);box-shadow:none;}
 .btn-primary span{margin-left:auto;font-size:18px;}
 .btn-back,.btn-ghost{border-color:var(--line-strong);}
@@ -1119,7 +1117,7 @@ button[aria-busy="true"]{cursor:wait;}
 @media(max-width:700px){
   .top-nav,.owner-page .top-nav{height:68px;padding:0 20px;gap:10px;}
   .nav-logo{font-size:36px;letter-spacing:-2px;}
-  .nav-logo .wordmark-caption{font-size:8px;letter-spacing:1.4px;margin-left:9px;max-width:55px;}
+  .nav-logo .wordmark-caption{font-size:7px;letter-spacing:2.4px;margin:5px 0 0 3px;max-width:none;}
   .nav-context{font-size:8px;letter-spacing:1px;max-width:95px;text-align:right;line-height:1.7;}
   .booking-wrap{display:flex;flex-direction:column;padding:20px 18px 48px;gap:0;}
   .salon-header{position:relative;top:auto;width:100%;min-height:0;padding:23px 22px 20px;border-radius:20px;margin-bottom:25px;}
@@ -1127,10 +1125,10 @@ button[aria-busy="true"]{cursor:wait;}
   .studio-spark{font-size:20px;}
   .studio-headline{text-align:left;font-size:37px;letter-spacing:-1px;line-height:1.08;margin:17px 0 13px;max-width:230px;position:relative;z-index:2;}
   .studio-description{text-align:left;font-size:11px;line-height:1.8;max-width:210px;margin:0;position:relative;z-index:2;}
-  .polish-art{position:absolute;width:125px;height:140px;right:-13px;top:53px;margin:0;opacity:.85;transform:rotate(8deg);}
-  .polish-swatch{width:40px;height:92px;left:calc(50% - 20px);bottom:10px;}
-  .polish-swatch::after{left:8px;top:13px;width:4px;height:37px;}
-  .polish-caption{display:none;}
+
+
+
+
   .studio-details{margin-top:18px;padding-top:12px;gap:2px;text-align:left;font-size:8px;letter-spacing:.2px;}
   .studio-details span:first-child{display:none;}
   .step-bar{width:100%;margin:0 0 23px;}
@@ -1191,7 +1189,7 @@ button[aria-busy="true"]{cursor:wait;}
 @media(max-width:359px){
   .studio-headline{font-size:32px;max-width:205px;}
   .studio-description{max-width:175px;font-size:10px;}
-  .polish-art{right:-24px;width:105px;opacity:.65;}
+
 }
 
 
