@@ -25,6 +25,7 @@ An online booking system for a single beauty salon. Customers book services in a
 - [ARCHITECTURE.md](ARCHITECTURE.md): how the system is built and why
 - [DESIGN.md](DESIGN.md): what the product does, booking rules, and terminology
 - [docs/salon-defaults.md](docs/salon-defaults.md): starting values for the salon, all editable in admin
+- [docs/screens.md](docs/screens.md): every screen for customers, staff and the owner
 - [CHANGELOG.md](CHANGELOG.md): what changed in each release
 - [CONTRIBUTING.md](CONTRIBUTING.md): how work is done in this repo
 - [docs/adr/](docs/adr/): architecture decision records
