@@ -25,6 +25,7 @@ This document describes how the salon booking system is built. Product behaviour
 | SMS | Twilio | Widely used, UK sender support. |
 | Hosting | Vercel (app), Supabase (data) | Preview deployments per branch. Managed backups. |
 | Tests | Vitest (unit), Playwright (end to end), pgTAP (database rules) | One tool per layer, all run in CI. |
+| Monitoring | Sentry | Error tracking for the app and Edge Functions. Free tier is enough at this volume. |
 
 ## 3. System overview
 
@@ -100,7 +101,7 @@ A booking holding a slot in `pending_payment` for longer than 15 minutes is rele
 - **Valid working hours.** `ends_local > starts_local`, `weekday` between 0 and 6.
 - **Valid money.** `price_pence >= 0`, `amount_pence >= 0`, `refunded_pence <= amount_pence`.
 - **Notification uniqueness.** Unique index on (booking_id, template, channel).
-- **Row-level security** on every table. Customers see only their own bookings. Staff see bookings where they are the staff member. Owner sees everything.
+- **Row-level security** on every table. Authenticated customers see only their own bookings. Guests have no database session, so they reach their booking only through the signed-link server route described in ADR 0004. Staff see bookings where they are the staff member. Owner sees everything.
 
 ## 6. Availability
 
@@ -187,13 +188,13 @@ Deployment flow:
 
 | # | Decision | Status |
 |---|---|---|
-| 0001 | Single-tenant system (one salon, no `salon_id` on every table) | Proposed |
-| 0002 | Supabase as backend instead of a custom API server | Proposed |
-| 0003 | Availability computed on demand, not pre-generated slots | Proposed |
-| 0004 | Guest checkout with optional accounts | Proposed |
-| 0005 | Stripe webhook as the only source of payment status | Proposed |
+| [0001](docs/adr/0001-single-tenant.md) | Single-tenant system (one salon, no `salon_id` on every table) | Proposed |
+| [0002](docs/adr/0002-supabase-backend.md) | Supabase as backend instead of a custom API server | Proposed |
+| [0003](docs/adr/0003-computed-availability.md) | Availability computed on demand, not pre-generated slots | Proposed |
+| [0004](docs/adr/0004-guest-checkout.md) | Guest checkout with optional accounts | Proposed |
+| [0005](docs/adr/0005-stripe-webhook-source-of-truth.md) | Stripe webhook as the only source of payment status | Proposed |
 
-Each becomes a file in `docs/adr/` when accepted.
+The index is in [docs/adr/README.md](docs/adr/README.md).
 
 ## 15. Open questions
 
