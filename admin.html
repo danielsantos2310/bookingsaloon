@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bella Nails Studio | Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="./salon-booking-app.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="theme-color" content="#2c382d"/>
+<meta name="description" content="A little time, just for you. Book nail art, manicures and your next visit to Bella Nails Studio."/>
+</head>
+<body class="owner-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="app-shell">
+  <nav class="top-nav">
+    <button class="admin-menu-toggle" type="button" onclick="toggleAdminMenu(true)" aria-label="Open menu" aria-controls="studio-navigation" aria-expanded="false">☰</button>
+    <a class="nav-logo" href="./index.html" aria-label="Bella Nails Studio home">bella<span class="wordmark-dot">.</span><span class="wordmark-caption">NAILS STUDIO</span></a>
+    <a class="nav-pill" href="./salon-booking-app.html" style="text-decoration:none;display:inline-flex;align-items:center;">View booking page <span aria-hidden="true">↗</span></a>
+    <span class="nav-pill active" id="adminNavButton">Studio workspace</span>
+  </nav>
+  <div class="connection-notice" id="connectionNotice" role="status" aria-live="polite" hidden></div>
+
+  <div id="view-admin" class="view active">
+    <div class="admin-shell">
+      <button class="admin-overlay" id="adminOverlay" type="button" onclick="toggleAdminMenu(false)" aria-label="Close menu"></button>
+      <div class="sidebar" id="studio-navigation" aria-label="Studio navigation">
+        <button class="sidebar-close btn btn-ghost" type="button" onclick="toggleAdminMenu(false)">Close menu <span aria-hidden="true">×</span></button>
+        <div style="padding:4px 10px 12px;">
+          <div style="font-size:11px;color:var(--light);margin-bottom:2px;">Signed in as</div>
+          <div style="font-size:13px;font-weight:600;color:var(--bark-dark);" id="sidebarAdminIdentity">Sign-in required</div>
+        </div>
+        <div class="sidebar-section">Overview</div>
+        <button class="sidebar-link active" id="sl-dash" type="button" onclick="switchAdmin('dash')">
+          <span class="icon" aria-hidden="true">◦</span> Dashboard
+        </button>
+        <div class="sidebar-section">bookings</div>
+        <button class="sidebar-link" id="sl-requests" type="button" onclick="switchAdmin('requests')">
+          <span class="icon" aria-hidden="true">◦</span> Requests
+          <span class="badge-count" id="pending-badge">0</span>
+        </button>
+        <button class="sidebar-link" id="sl-history" type="button" onclick="switchAdmin('history')">
+          <span class="icon" aria-hidden="true">◦</span> History
+        </button>
+        <div class="sidebar-section">Salon management</div>
+        <button class="sidebar-link" id="sl-avail" type="button" onclick="switchAdmin('avail')">
+          <span class="icon" aria-hidden="true">◦</span> Staff and services
+        </button>
+        <button class="sidebar-link" id="sl-pix" type="button" onclick="switchAdmin('pix')">
+          <span class="icon" aria-hidden="true">◦</span> Salon settings
+        </button>
+        <div class="sidebar-section">Records</div>
+        <button class="sidebar-link" id="sl-audit" type="button" onclick="switchAdmin('audit')">
+          <span class="icon" aria-hidden="true">◦</span> Activity log
+        </button>
+      </div>
+
+      <div class="admin-main" id="main-content" tabindex="-1">
+        <div class="admin-panel active" id="panel-dash">
+          <div class="workspace-heading"><div><div class="workspace-eyebrow">YOUR STUDIO, AT A GLANCE</div><h1 class="admin-title">Good things, beautifully organised.</h1></div><span class="workspace-label">OWNER WORKSPACE</span></div>
+          <section class="avail-card" id="adminAuthCard" aria-label="Owner sign-in">
+            <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Welcome back to Bella.</div>
+            <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Your bookings, your team, your day. Sign in to make it all happen.</div>
+            <div class="report-toolbar">
+              <input class="form-input" id="adminEmail" type="email" aria-label="Email" autocomplete="username" placeholder="admin@salon.com"/>
+              <div class="password-control"><input class="form-input" id="adminPassword" type="password" placeholder="Password" aria-label="Password" autocomplete="current-password"/><button class="password-toggle" type="button" aria-label="Show password" aria-pressed="false" onclick="toggleAdminPassword(this)">Show</button></div>
+              <button class="btn btn-primary" type="button" onclick="adminLogin()">Sign in</button>
+            </div>
+            <div class="staff-actions" style="margin-top:12px;">
+              <span class="pill-note" id="adminSessionStatus">Not signed in</span>
+              <button class="btn btn-ghost" type="button" onclick="adminLogout()">Sign out</button>
+              <button class="btn btn-ghost" type="button" onclick="syncFromSupabase(true)">Refresh data</button>
+            </div>
+            <div class="staff-actions" style="margin-top:12px;">
+              <span class="pill-note" id="notificationStatus">Notifications: unavailable</span>
+              <button class="btn btn-ghost" type="button" onclick="requestAdminNotifications()">Enable notifications</button>
+            </div>
+            <div style="font-size:12px;color:var(--mid);margin-top:10px;">Sign in with your email and password. Browser notifications can alert you to new bookings while this page is open.</div>
+          </section>
+          <div class="dash-grid admin-protected">
+            <button class="stat-card stat-card-button" type="button" onclick="openDashboardFilter('today')">
+              <div class="stat-label">Today</div>
+              <div class="stat-val" id="dash-today">0</div>
+              <div class="stat-sub">bookings</div>
+            </button>
+            <button class="stat-card stat-card-button" type="button" onclick="openDashboardFilter('pending')">
+              <div class="stat-label">Pending</div>
+              <div class="stat-val warn" id="dash-pending">0</div>
+              <div class="stat-sub">need action</div>
+            </button>
+            <button class="stat-card stat-card-button" type="button" onclick="openDashboardFilter('accepted')">
+              <div class="stat-label">Confirmed</div>
+              <div class="stat-val success" id="dash-confirmed">0</div>
+              <div class="stat-sub">confirmed</div>
+            </button>
+            <button class="stat-card stat-card-button" type="button" onclick="openDashboardFilter('payment_pending')">
+              <div class="stat-label">Unpaid bookings</div>
+              <div class="stat-val info" id="dash-pix">0</div>
+              <div class="stat-sub">Pay in salon</div>
+            </button>
+          </div>
+          <div class="revenue-grid admin-protected">
+            <div class="rev-card">
+              <div class="rev-label">Weekly revenue</div>
+              <div class="rev-val" id="rev-week">£0</div>
+              <div class="rev-change" id="rev-week-sub">Paid bookings only</div>
+            </div>
+            <div class="rev-card" style="background:var(--forest);">
+              <div class="rev-label">Monthly revenue</div>
+              <div class="rev-val" id="rev-month">£0</div>
+              <div class="rev-change" id="rev-month-sub">Paid bookings only</div>
+            </div>
+          </div>
+          <div class="ranking-card admin-protected">
+            <div class="ranking-title">Monthly reports</div>
+            <div class="report-toolbar">
+              <input aria-label="Report month" class="form-input" id="reportMonth" type="month"/>
+              <button class="btn btn-primary" type="button" onclick="generateMonthlyPdf()">Print monthly report</button>
+              <button class="btn btn-ghost" type="button" onclick="saveMonthlyRecord()">Save snapshot</button>
+            </div>
+            <div class="salon-sub" style="margin-top:10px;">Open a print-friendly monthly report, save it as a PDF, or keep a snapshot in the report archive.</div>
+            <div class="report-archive" id="reportArchive"></div>
+          </div>
+          <div class="ranking-card admin-protected">
+            <div class="ranking-title">Popular services</div>
+            <div id="rankingList"></div>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="panel-requests">
+          <div class="admin-title">Pending requests</div>
+          <div class="salon-sub" style="margin-bottom:16px;">Requests leave this list once confirmed or declined.</div>
+          <div id="bookings-list"></div>
+        </div>
+
+        <div class="admin-panel" id="panel-history">
+          <div class="admin-title">Booking history</div>
+          <div class="request-filters">
+            <button class="filter-pill active" type="button" onclick="filterHistory(this, 'today')">Today</button>
+            <button class="filter-pill" type="button" onclick="filterHistory(this, 'accepted')">Confirmed</button>
+            <button class="filter-pill" type="button" onclick="filterHistory(this, 'payment_pending')">Unpaid bookings</button>
+            <button class="filter-pill" type="button" onclick="filterHistory(this, 'declined')">Declined</button>
+            <button class="filter-pill" type="button" onclick="filterHistory(this, 'all')">All</button>
+          </div>
+          <div id="history-list"></div>
+        </div>
+
+        <div class="admin-panel" id="panel-avail">
+          <div class="admin-title">Staff and services</div>
+          <div class="avail-card">
+            <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Salon services</div>
+            <div style="font-size:12px;color:var(--mid);margin-bottom:12px;">Manage your services and assign them to qualified staff.</div>
+            <div class="staff-list" id="adminServiceList"></div>
+            <button class="btn btn-ghost" style="margin-top:12px;font-size:13px;" type="button" onclick="addService()">+ Add service</button>
+          </div>
+          <div class="avail-card">
+            <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Staff</div>
+            <div style="font-size:12px;color:var(--mid);margin-bottom:12px;">Each staff member has their own services and weekly working hours.</div>
+            <div class="staff-list" id="staff-list"></div>
+            <button class="btn btn-ghost" style="margin-top:12px;font-size:13px;" type="button" onclick="addAttendant()">+ Add staff member</button>
+          </div>
+          <div class="avail-card">
+            <div style="font-weight:600;font-size:14px;margin-bottom:4px;">Time off</div>
+            <div class="blocked-list" id="blocked-list"></div>
+            <button class="btn btn-ghost" style="margin-top:12px;font-size:13px;" type="button" onclick="addBlock()">+ Block a date</button>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="panel-pix">
+          <div class="admin-title">Salon settings</div>
+          <div class="avail-card">
+            <h2 style="font-size:18px;">Region and payments</h2>
+            <dl class="salon-settings">
+              <dt>Country</dt><dd>United Kingdom</dd>
+              <dt>Language</dt><dd>English (UK)</dd>
+              <dt>Time zone</dt><dd>Europe/London</dd>
+              <dt>Salon currency</dt><dd id="salonCurrencyLabel">GBP — British pound</dd>
+              <dt>Payment method</dt><dd>Pay in salon</dd>
+            </dl>
+            <p class="salon-sub">Service prices and reports use the salon currency. Online card payment will be available after payment setup.</p>
+          </div>
+        </div>
+        <div class="admin-panel" id="panel-audit">
+          <div class="admin-title">Activity log</div>
+          <div class="audit-list" id="audit-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="./salon-config.js"></script>
+<script src="./salon-booking-app.js"></script>
+</body>
+</html>
+

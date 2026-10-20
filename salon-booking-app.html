@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bella Nails Studio | Booking</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="./salon-booking-app.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="theme-color" content="#2c382d"/>
+<meta name="description" content="A little time, just for you. Book nail art, manicures and your next visit to Bella Nails Studio."/>
+</head>
+<body class="booking-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="app-shell">
+  <nav class="top-nav">
+    <a class="nav-logo" href="./index.html" aria-label="Bella Nails Studio home">bella<span class="wordmark-dot">.</span><span class="wordmark-caption">NAILS STUDIO</span></a>
+    <span class="nav-context">YOUR NEXT LITTLE RITUAL</span>
+  </nav>
+  <div class="connection-notice" id="connectionNotice" role="status" aria-live="polite" hidden></div>
+
+  <main id="view-client" class="view active">
+    <div class="booking-wrap" id="main-content">
+      <header class="salon-header">
+        <div class="studio-eyebrow"><span class="studio-spark" aria-hidden="true">✳</span> BELLA NAILS STUDIO</div>
+        <h1 class="studio-headline">A little time.<br><em>Just for you.</em></h1>
+        <p class="studio-description">Beautiful nails start with a moment to yourself. Find your service, your person and your perfect time.</p>
+        <div class="polish-art" aria-hidden="true">
+          <span class="polish-swatch swatch-one"></span><span class="polish-swatch swatch-two"></span><span class="polish-swatch swatch-three"></span><span class="polish-swatch swatch-four"></span>
+          <span class="polish-caption">a colour for every mood</span>
+        </div>
+        <div class="studio-details"><span>Nail art &amp; manicures</span><span>United Kingdom · London time</span></div>
+      </header>
+
+      <div class="step-bar" aria-label="Booking progress">
+        <div class="step-seg active" id="seg1" aria-current="step"><span class="step-number">1</span><span class="step-name">Your person</span></div>
+        <div class="step-seg" id="seg2"><span class="step-number">2</span><span class="step-name">Service</span></div>
+        <div class="step-seg" id="seg3"><span class="step-number">3</span><span class="step-name">Date & time</span></div>
+        <div class="step-seg" id="seg4"><span class="step-number">4</span><span class="step-name">Your details</span></div>
+        <div class="step-seg" id="seg5"><span class="step-number">5</span><span class="step-name">Review</span></div>
+      </div>
+
+      <div id="step1" class="step-card">
+        <div class="step-label">Step 1 of 5</div>
+        <h2 class="step-title">Who’s your nail person?</h2>
+        <div class="salon-sub" style="margin-bottom:16px;">Pick someone you love, or let us find your perfect match.</div>
+        <div class="attendant-grid" id="clientAttendantGrid"></div>
+        <div class="btn-row" style="justify-content:flex-end;">
+          <button class="btn btn-primary"  type="button" onclick="goStep(2)">Choose a service <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+
+      <div id="step2" class="step-card" style="display:none;">
+        <div class="step-label">Step 2 of 5</div>
+        <h2 class="step-title">Choose a service</h2>
+        <div class="lgpd-note" style="margin-bottom:16px;" id="clientAttendantSummary">No staff member selected.</div>
+        <div class="service-list" id="serviceList"></div>
+        <div class="btn-row">
+          <button class="btn btn-back" type="button" onclick="goStep(1)">← Back</button>
+          <button class="btn btn-primary" type="button" onclick="goStep(3)">Next →</button>
+        </div>
+      </div>
+
+      <div id="step3" class="step-card" style="display:none;">
+        <div class="step-label">Step 3 of 5</div>
+        <h2 class="step-title">Choose a date and time</h2>
+        <div class="cal-header">
+          <div class="cal-month" id="calMonth">May 2026</div>
+          <div class="cal-nav">
+            <button class="cal-btn" type="button" aria-label="Previous month" onclick="changeMonth(-1)">‹</button>
+            <button class="cal-btn" type="button" aria-label="Next month" onclick="changeMonth(1)">›</button>
+          </div>
+        </div>
+        <div class="day-labels">
+          <div class="day-label-cell">SUN</div>
+          <div class="day-label-cell">MON</div>
+          <div class="day-label-cell">TUE</div>
+          <div class="day-label-cell">WED</div>
+          <div class="day-label-cell">THU</div>
+          <div class="day-label-cell">FRI</div>
+          <div class="day-label-cell">SAT</div>
+        </div>
+        <div class="day-grid" id="dayGrid"></div>
+        <div id="timePicker" style="display:none;">
+          <div class="time-section-label">HORÁRIOS DISPONÍVEIS</div>
+          <div class="salon-sub" style="margin-bottom:12px;" id="slotHint">Times allow for the full service duration. All times are Europe/London.</div>
+          <div class="time-grid" id="timeGrid"></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-back" type="button" onclick="goStep(2)">← Back</button>
+          <button class="btn btn-primary" type="button" onclick="goStep(4)">Next →</button>
+        </div>
+      </div>
+
+      <div id="step4" class="step-card" style="display:none;">
+        <div class="step-label">Step 4 of 5</div>
+        <h2 class="step-title">Seus dados</h2>
+        <div class="lgpd-note" style="margin:0 0 16px;" id="selectedSlotSummary">Choose a time to see your booking summary.</div>
+        <div class="form-field">
+          <label class="form-label" for="clientName">Full name</label>
+          <input class="form-input" id="clientName" placeholder="Anna Smith" autocomplete="name" type="text"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="clientPhone">Phone number</label>
+          <input class="form-input" id="clientPhone" placeholder="+44 7700 900123" type="tel" autocomplete="tel"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="clientEmail">Email</label>
+          <input class="form-input" id="clientEmail" placeholder="anna@example.com" type="email" autocomplete="email"/>
+        </div>
+        <div class="lgpd-note">We use your contact details to manage this booking. Marketing consent is not requested here.</div>
+        <div class="btn-row">
+          <button class="btn btn-back" type="button" onclick="goStep(3)">← Back</button>
+          <button class="btn btn-primary" type="button" onclick="goStep(5)">Next →</button>
+        </div>
+      </div>
+
+      <div id="step5" class="step-card" style="display:none;">
+        <div class="step-label">Step 5 of 5</div>
+        <h2 class="step-title">Payment method</h2>
+        <p class="lgpd-note">Pay at the salon. Online card payment is not available yet.</p>
+        <div class="pay-option selected" id="pay-later" onclick="selectPay('later')" style="margin-top:10px;">
+          <div class="pay-option-header">
+            <div class="pay-radio"><div class="pay-radio-dot"></div></div>
+            <div>
+              <div class="pay-title">Pay in salon</div>
+              <div class="pay-sub">Pay at the salon on the day of your booking</div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-back" type="button" onclick="goStep(4)">← Back</button>
+          <button class="btn btn-primary" type="button" onclick="submitBooking()">Send booking request →</button>
+        </div>
+      </div>
+
+      <div id="step6" class="step-card" style="display:none;">
+        <div class="confirm-wrap">
+          <div class="confirm-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="confirm-title">Request received!</div>
+          <div class="confirm-sub">Your request has been received. Please contact the salon if you need to check its confirmation.</div>
+          <div class="confirm-card">
+            <div class="confirm-row">
+              <span class="confirm-key">Staff member</span>
+              <span class="confirm-val" id="cf-attendant">—</span>
+            </div>
+            <div class="confirm-row">
+              <span class="confirm-key">Service</span>
+              <span class="confirm-val" id="cf-service">Gel manicure</span>
+            </div>
+            <div class="confirm-row">
+              <span class="confirm-key">Date</span>
+              <span class="confirm-val" id="cf-date">—</span>
+            </div>
+            <div class="confirm-row">
+              <span class="confirm-key">Time</span>
+              <span class="confirm-val" id="cf-time">—</span>
+            </div>
+            <div class="confirm-row">
+              <span class="confirm-key">Price</span>
+              <span class="confirm-val" id="cf-price">—</span>
+            </div>
+            <div class="confirm-row">
+              <span class="confirm-key">Payment</span>
+              <span class="confirm-val" id="cf-pay">Pay in salon</span>
+            </div>
+          </div>
+          <button class="btn btn-ghost" type="button" onclick="resetBooking()">Make another booking</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="./salon-config.js"></script>
+<script src="./salon-booking-app.js"></script>
+</body>
+</html>
+
