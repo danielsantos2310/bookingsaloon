@@ -84,7 +84,7 @@ Editable in admin, under Settings.
 |---|---|---|---|
 | Booking confirmation | Email | Immediately | Default, always on |
 | Reminder | Email | 24 hours before | Default, on |
-| Reminder | SMS | 2 hours before | Default, **off** until Twilio is set up (Step 14) |
+| Reminder | SMS | 2 hours before | Default, **off** until Twilio is set up (Milestone 5) |
 | Cancellation | Email | Immediately | Default, always on |
 
 The owner can turn each reminder on or off and change its timing. Confirmation and cancellation emails cannot be turned off, because customers need them.
