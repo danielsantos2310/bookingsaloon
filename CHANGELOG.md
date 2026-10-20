@@ -18,6 +18,7 @@ Entries are added under **Unreleased** as work is merged. When a release is cut,
 - Roadmap in README.md.
 - `docs/salon-defaults.md`: starting values for business details, opening hours, services, staff, booking rules and reminders. All are editable in the admin area.
 
+- `docs/design-system.md`: provisional design system (Option A palette) with semantic colour tokens, type scale, spacing, 18 component specifications with states, focus and keyboard rules, and a testing checklist. Contrast of every text pairing checked.
 - `docs/brand.md`: three brand directions with palettes checked for WCAG contrast, typography and logo approach. Flags that the working name "Bellabooking" is close to an existing salon booking product and needs checking.
 - `docs/screens.md`: the full list of 45 screens (customer, staff, owner, system) with contents, actions and milestone for each.
 
