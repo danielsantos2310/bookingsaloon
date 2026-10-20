@@ -18,5 +18,7 @@ Entries are added under **Unreleased** as work is merged. When a release is cut,
 - Roadmap in README.md.
 - `docs/salon-defaults.md`: starting values for business details, opening hours, services, staff, booking rules and reminders. All are editable in the admin area.
 
+- `docs/screens.md`: the full list of 45 screens (customer, staff, owner, system) with contents, actions and milestone for each.
+
 ### Changed
 - DESIGN.md: booking rules are now marked **Default** (editable) or **Fixed** (v1 rule). The "(assumed)" markers are removed, and open questions are reduced to the points that still need an answer before launch.
